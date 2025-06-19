@@ -1,24 +1,10 @@
-// app/home/users/updateUser/page.js
+import { Suspense } from 'react';
+import UpdateUser from './updateUser'; // assuming it's in the same folder
 
-import UpdateUserClient from "./";
-
-export default function Page({ searchParams }) {
-  // Destructure with defaults
-  const {
-    id = "",
-    name: initialName = "",
-    email: initialEmail = "",
-    password: initialPassword = "",
-    type: initialType = "",
-  } = searchParams;
-
+export default function UpdateUserPage() {
   return (
-    <UpdateUserClient
-      id={id}
-      initialName={initialName}
-      initialEmail={initialEmail}
-      initialPassword={initialPassword}
-      initialType={initialType}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <UpdateUser />
+    </Suspense>
   );
 }

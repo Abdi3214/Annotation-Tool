@@ -1,26 +1,29 @@
 "use client";
+
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from "react";
 
-export default function UpdateUserClient({
-  id,
-  initialName,
-  initialEmail,
-  initialPassword,
-  initialType,
-}) {
+export default function UpdateUser() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState('');
-  const router = useRouter();
-  
+
+  const id = searchParams.get('id') ?? '';
+  const initialName = searchParams.get('name') ?? '';
+  const initialEmail = searchParams.get('email') ?? '';
+  const initialPassword = searchParams.get('password') ?? '';
+  const initialType = searchParams.get('type') ?? '';
+
   useEffect(() => {
-    // initialize only when props change
     setName(initialName);
     setEmail(initialEmail);
     setPassword(initialPassword);
     setType(initialType);
-  }, [initialName, initialEmail, initialPassword, initialType]);n
+  }, [initialName, initialEmail, initialPassword, initialType]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
