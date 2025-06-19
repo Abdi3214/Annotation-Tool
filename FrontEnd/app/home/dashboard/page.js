@@ -1,17 +1,9 @@
 'use client';
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-// Dashboard.jsx
 import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
+  Bar, BarChart, CartesianGrid, Line, LineChart,
+  ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
 
 const annotationsData = [
@@ -27,8 +19,8 @@ const errorsData = [
   { name: "Wed", value: 250 },
   { name: "Thu", value: 450 },
 ];
-// bg-[#0e2235]
-export default function Dashboard() {
+
+export default function Dashboard({ name }) {
   const router = useRouter();
   const [token, setToken] = useState("");
 
@@ -40,17 +32,7 @@ export default function Dashboard() {
       setToken(t);
     }
   }, []);
-  const searchParamas = useSearchParams();
-  const name = searchParamas.get('name')
-  const [annotationIndex, setAnnotationIndex] = useState('');
 
-  const [totalAnnotations, setTotalAnnotations] = useState(0);
-
-  // useEffect(() => {
-  //   const stored = localStorage.getItem('totalAnnotations');
-  //   const parsed = stored ? parseInt(stored, 10) : 0;
-  //   setTotalAnnotations(isNaN(parsed) ? 0 : parsed);
-  // }, []);
   return (
     <div className="p-8 space-y-8">
       <header className="flex justify-between items-center">
@@ -64,16 +46,12 @@ export default function Dashboard() {
       <section className="flex space-x-16">
         <div className="flex-1 p-6 rounded-lg border border-gray-200 shadow text-center">
           <p className="text-3xl font-bold">400</p>
-          <p className="text-sm ">Total Annotations</p>
+          <p className="text-sm">Total Annotations</p>
         </div>
         <div className="flex-1 p-6 rounded-lg border border-gray-200 shadow text-center">
           <p className="text-3xl font-bold">375</p>
-          <p className="text-sm ">Annotations per user</p>
+          <p className="text-sm">Annotations per user</p>
         </div>
-        {/* <div className="p-6 rounded-lg border border-gray-200 shadow text-center">
-          <p className="text-3xl font-bold">84</p>
-          <p className="text-sm ">Completed</p>
-        </div> */}
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
