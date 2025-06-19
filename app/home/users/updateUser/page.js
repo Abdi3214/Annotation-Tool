@@ -1,6 +1,6 @@
 // app/home/users/updateUser/page.js
 
-import UpdateUserClient from "./updateUserClient";
+import UpdateUserClient from "./";
 
 export default function Page({ searchParams }) {
   // Destructure with defaults
